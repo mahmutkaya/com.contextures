@@ -15,6 +15,6 @@ Cookies are accepted
     Run Keyword If    ${present}                       Accept Cookies
 
 Accept Cookies
-    Select Frame                    ${cookiesIframe}
-    Wait Until Element Is Visible   ${acceptAllButton}  17s
-    Click Element                   ${acceptAllButton}
+    Select Frame      ${cookiesIframe}
+    ${present}=       Run Keyword And Return Status  Wait Until Element Is Visible   ${acceptAllButton}  7s
+    Run Keyword If    ${present}  Click Element      ${acceptAllButton}
