@@ -9,13 +9,20 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
-        - run: mkdir test-results
         - name: Execute tests
-          uses: joonvena/robotframework-docker-action@v0.1
-          env:
-            BROWSER: chrome
-            ROBOT_TESTS_DIR: ${{ github.workspace }}/tests
-            ROBOT_REPORTS_DIR: ${{ github.workspace }}/test-results
+          run: |
+            mkdir test-results
+            docker run --shm-size=1g -e BROWSER=headlesschrome \
+            -v ${{github.workspace}}/tests:/opt/robotframework/tests:Z \
+            -v ${{github.workspace}}/test-results:/opt/robotframework/reports:Z \
+            --user 1001:1000 \
+            ppodgorsek/robot-framework:latest
+#        - name: Execute tests
+#          uses: joonvena/robotframework-docker-action@v0.1
+#          env:
+#            BROWSER: chrome
+#            ROBOT_TESTS_DIR: ${{ github.workspace }}/tests
+#            ROBOT_REPORTS_DIR: ${{ github.workspace }}/test-results
         - name: Upload test results
           uses: actions/upload-artifact@v1
           if: always()
