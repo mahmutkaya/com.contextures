@@ -20,12 +20,7 @@ jobs:
             -v ${{github.workspace}}/test-results:/opt/robotframework/reports:Z \
             --user 1001:1000 \
             ppodgorsek/robot-framework:latest
-#        - name: Execute tests
-#          uses: joonvena/robotframework-docker-action@v0.1
-#          env:
-#            BROWSER: chrome
-#            ROBOT_TESTS_DIR: ${{ github.workspace }}/tests
-#            ROBOT_REPORTS_DIR: ${{ github.workspace }}/test-results
+
         - name: Upload test results
           uses: actions/upload-artifact@v1
           if: always()
