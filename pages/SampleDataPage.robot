@@ -20,7 +20,7 @@ ${downloadSampleDataButton}         (//a[@href='SampleData.zip'])[1]
 Sample Data Page Opened
     Open Url With Chrome               ${SampleData01Url}
     Cookies are accepted
-    Wait until Page Contains Element   ${SampleDataHeaderText}  7s
+#    Wait until Page Contains Element   ${SampleDataHeaderText}  7s
 
 I Get All Data Of Column
     [Arguments]                   ${column}
