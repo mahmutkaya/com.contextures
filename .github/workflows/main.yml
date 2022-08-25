@@ -9,6 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
+        - run: mkdir test-results
         - name: Execute tests
           uses: joonvena/robotframework-docker-action@v0.1
           env:
