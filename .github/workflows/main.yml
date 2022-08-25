@@ -13,6 +13,9 @@ jobs:
           run: |
             mkdir test-results
             docker run --shm-size=1g -e BROWSER=headlesschrome \
+            -v ${{github.workspace}}/pages:/opt/robotframework/pages:Z \
+            -v ${{github.workspace}}/resources:/opt/robotframework/resources:Z \
+            -v ${{github.workspace}}/utilities:/opt/robotframework/utilities:Z \
             -v ${{github.workspace}}/tests:/opt/robotframework/tests:Z \
             -v ${{github.workspace}}/test-results:/opt/robotframework/reports:Z \
             --user 1001:1000 \
